@@ -1,3 +1,8 @@
+## Prepare
+
+brew install protobuf
+brew install zeromq
+
 # Sawtooth PBFT
 
 This repository contains an implementation of the Practical Byzantine Fault
