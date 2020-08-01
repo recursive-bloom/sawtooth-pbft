@@ -1,7 +1,7 @@
 ## Prepare
 
-brew install protobuf
-brew install zeromq
+- brew install protobuf
+- brew install zeromq
 
 # Sawtooth PBFT
 
