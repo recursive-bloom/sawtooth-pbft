@@ -105,7 +105,8 @@ impl PbftNode {
         msg: ParsedMessage,
         state: &mut PbftState,
     ) -> Result<(), PbftError> {
-        trace!("{}: Got peer message: {}", state, msg.info());
+        // trace!("{}: Got peer message: {}", state, msg.info());
+        debug!("{}: Got peer message: {}", state, msg.info());
 
         // Make sure this message is from a known member of the PBFT network
         if !state.member_ids.contains(&msg.info().signer_id) {
@@ -271,7 +272,7 @@ impl PbftNode {
                 )
                 // Check if there are at least 2f + 1 Prepares
                 .len() as u64
-                > 2 * state.f;
+                >= 2 * state.f;
             if has_matching_pre_prepare && has_required_prepares {
                 state.switch_phase(PbftPhase::Committing)?;
                 self.broadcast_pbft_message(
@@ -1213,7 +1214,7 @@ impl PbftNode {
                 header.signer_id
             )));
         }
-
+/*
         // Verify the message type
         let msg_type = PbftMessageType::from(pbft_message.get_info().get_msg_type());
         if msg_type != expected_type {
@@ -1255,7 +1256,7 @@ impl PbftNode {
         }
 
         verify_sha512(vote.get_message_bytes(), header.get_content_sha512())?;
-
+*/
         // Validate against the specified criteria
         validation_criteria(&pbft_message)?;
 
